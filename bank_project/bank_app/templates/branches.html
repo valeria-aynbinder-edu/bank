@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title_block %} Branches {% endblock %}
+
+{% block content_block %}
+
+<div>
+    <p>Branches page</p>
+    {% for branch in branches %}
+        <p>City: {{ branch.city }}</p>
+        <p>Address: {{ branch.address }}</p>
+        <a href="{% url 'branch_details' branch.id %}">Go to branch details</a>
+    {% endfor %}
+</div>
+
+{% endblock %}

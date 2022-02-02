@@ -1,0 +1,8 @@
+div {
+    display: flex;
+    flex-direction: column;
+}
+
+h2 {
+    color: blue;
+}
