@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title_block %} New branch {% endblock %}
+
+{% block content_block %}
+
+<!--<form action="{% url 'add_branch' %}" method="post">-->
+
+<!--    <label for="city_id">City:</label><br>-->
+<!--    <input type="text" id="city_id" name="city"><br>-->
+
+<!--    <label for="address_id">Address:</label><br>-->
+<!--    <input type="text" id="address_id" name="address"><br>-->
+
+
+<!--    <input type="submit" value="Submit">-->
+<!--</form>-->
+
+<form action="{% url 'add_branch' %}" method="post">
+<!--    {{ form.as_p }}-->
+
+        {{ form.non_field_errors }}
+        <div class="fieldWrapper">
+            <div style="flex-direction: row">
+                <div style="flex-direction: column">
+                    <label for="{{ form.city.id_for_label }}">My custom city label</label>
+                    {{ form.city }}
+                </div>
+                <div style="background-color: red">
+                    {{ form.city.errors }}
+                </div>
+            </div>
+        </div>
+        <div class="fieldWrapper">
+            {{ form.address.errors }}
+            <label for="{{ form.address.id_for_label }}">My custom address label</label>
+            {{ form.address }}
+        </div>
+
+
+    <input type="submit" value="Submit">
+</form>
+
+{% endblock %}

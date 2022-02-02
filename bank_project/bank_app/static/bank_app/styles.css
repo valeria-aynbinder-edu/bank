@@ -6,3 +6,8 @@ div {
 h2 {
     color: blue;
 }
+
+.fieldWrapper {
+    padding: 5px;
+    background-color: yellow;
+}

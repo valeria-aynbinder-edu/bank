@@ -4,9 +4,19 @@
 
 {% block content_block %}
 
-<div>
-  <p>City: {{branch.city}} </p>
-  <p>Address: {{branch.address}} </p>
-</div>
+<!--<div>-->
+<!--  <p>City: {{branch.city}} </p>-->
+<!--  <p>Address: {{branch.address}} </p>-->
+<!--</div>-->
+
+<form action="{% url 'branch_details' branch_id %}" method="post">
+
+        {{ form.as_p }}
+
+    <input type="submit" value="Submit">
+</form>
+
+
+<button onclick="send_delete({{ branch_id }})">Delete this branch</button>
 
 {% endblock %}

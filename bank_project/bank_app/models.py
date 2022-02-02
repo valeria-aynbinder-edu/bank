@@ -10,14 +10,25 @@ class BankModel(models.Model):
         abstract = True
 
 
+class City(models.Model):
+    name = models.CharField(null=False, blank=False, max_length=128)
+
+    def __str__(self):
+        return f"{self.name}"
+
+
 # Create your models here.
 class Branch(BankModel):
 
-    city = models.CharField(null=False, blank=False, max_length=128)
+    # city = models.CharField(null=False, blank=False, max_length=128)
+    city = models.ForeignKey(City, on_delete=models.RESTRICT, null=True, blank=True)
     address = models.CharField(null=False, blank=False, max_length=512)
 
     class Meta:
         db_table = "branches"
+
+    def __str__(self):
+        return f"{self.city} {self.address}"
 
 
 class Employee(BankModel):
