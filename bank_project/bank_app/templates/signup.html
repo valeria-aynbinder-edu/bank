@@ -2,8 +2,8 @@
 
 {% block content_block %}
 <h2>Sign up</h2>
-<form method="post">
-<!--    {% csrf_token %}-->
+<form action="signup" method="post">
+    {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Sign up</button>
 </form>

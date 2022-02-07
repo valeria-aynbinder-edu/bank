@@ -129,5 +129,31 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+
+#Where to redirect after successfull login
 LOGIN_REDIRECT_URL = '/'
+
+# what is the login url. will be used if you try to access some url, and you are not logged in
 LOGIN_URL = '/login'
+
+LOGGING = {
+    'version': 1,
+    'filters': {
+        'require_debug_true': {
+            '()': 'django.utils.log.RequireDebugTrue',
+        }
+    },
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'filters': ['require_debug_true'],
+            'class': 'logging.StreamHandler',
+        }
+    },
+    'loggers': {
+        'django.db.backends': {
+            'level': 'DEBUG',
+            'handlers': ['console'],
+        }
+    }
+}

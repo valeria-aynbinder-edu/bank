@@ -18,7 +18,8 @@ def index(request):
 
 @login_required
 def branches(request):
-    branches = Branch.objects.filter(is_deleted=False)
+    # branches = Branch.objects.filter(is_deleted=False).select_related("city")
+    branches = Branch.objects.filter(is_deleted=False).prefetch_related("city")
     return render(request, "branches.html", context={'branches': branches})
 
 @login_required
@@ -60,16 +61,12 @@ def employee_details(request, employee_id):
         form = None
         if edit_mode:
             form = EmployeeForm(instance=employee)
-            # form.fields['position_details'].queryset = BranchEmployee.objects.filter(employee_id=employee_id)
 
-        return render(request, "employee_details.html",
-                      context={'employee': employee,
-                               'is_edit_mode': edit_mode,
-                               'form': form})
-    elif request.method == 'POST':
+    else:
         form = EmployeeForm(instance=employee, data=request.POST)
         if form.is_valid():
-            form.save()
+            form.save(commit=True)
+
 
     return render(request, "employee_details.html",
                   context={'employee': employee,
@@ -113,7 +110,8 @@ def add_branch(request):
 @login_required
 def accounts(request):
     all_accounts = Account.objects.filter(is_deleted=False) #consider adding to some common place
-    return render(request, "accounts.html", context={'accounts': all_accounts})
+    return render(request, "accounts.html",
+                  context={'accounts': all_accounts})
 
 @login_required
 @require_http_methods(["GET", "POST"])
@@ -144,7 +142,7 @@ def signup(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-            return redirect('')
+            return redirect('/')
     else:
         form = UserCreationForm()
     return render(request, 'signup.html', {'form': form})

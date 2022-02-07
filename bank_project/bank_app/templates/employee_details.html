@@ -8,6 +8,7 @@
     <p>Employee details</p>
     {% if is_edit_mode %}
         <form action="{% url 'employee_details' employee.id %}" method="post" >
+            {% csrf_token %}
             {{ form.as_p }}
             <input class="btn btn-primary" type="submit" value="Save">
         </form>
@@ -19,6 +20,8 @@
                 <p class="card-text">Birth date: {{ employee.birth_date }}</p>
                 <p class="card-text">Address: {{ employee.city }} {{ employee.address }}</p>
                 <a href="?mode=edit" class="btn btn-primary">Edit</a>
+                <button onclick="location.href = '?mode=edit' ">Edit</button>
+                <button onclick="location.href = '{% url 'employee_details' employee.id %}' + '?mode=edit' ">Edit 1</button>
             </div>
         </div>
     {% endif %}
