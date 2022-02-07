@@ -3,6 +3,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>{% block title_block %} Bank {% endblock %}</title>
 
     <!-- Latest compiled and minified CSS -->
@@ -16,13 +18,24 @@
 </head>
 <body>
 
-    <h2>Bank Valeria Header</h2>
+    <!-- Image and text -->
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">
+            <img src="data:image/png;base64,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" width="30" height="30" class="d-inline-block align-top" alt="">
+            Valeria's Bank
+        </a>
+        <a href="/logout">Logout</a>
+    </nav>
 
-    {% block content_block %}
-    {% endblock %}
+    <div class="content">
+        {% block content_block %}
+        {% endblock %}
 
-    <div>
-        <h1>Footer section</h1>
+
+    </div>
+
+    <div class="footer">
+        <h5>Footer section</h5>
     </div>
 
 

@@ -1,6 +1,19 @@
-div {
+html, body {
+    height: 100%;
+    width: 100%;
+}
+body, div {
     display: flex;
     flex-direction: column;
+}
+
+.footer {
+    justify-content: flex-end;
+}
+
+.content {
+    height: 100%;
+    padding: 10px 20px;
 }
 
 h2 {

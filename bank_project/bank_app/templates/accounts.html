@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title_block %} Accounts {% endblock %}
+
+{% block content_block %}
+
+<div>
+    <p>Accounts page</p>
+    <ul>
+        {% for account in accounts %}
+            <li><a href="{% url 'bank_account_details' account.id %}">{{ account.account_num }}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock %}

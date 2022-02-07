@@ -6,6 +6,11 @@
 
 <div>
     <p>Employees page</p>
+    <ul>
+    {% for employee in employees %}
+        <li><a href="{% url 'employee_details' employee.id %}">{{ employee.first_name }} {{ employee.last_name }}</a></li>
+    {% endfor %}
+    </ul>
 </div>
 
 {% endblock %}

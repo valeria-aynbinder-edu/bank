@@ -11,4 +11,11 @@ urlpatterns = [
 
     path('employees', views.employees, name='employees'),
     path('employees/<int:employee_id>', views.employee_details, name='employee_details'),
+
+
+    path('bank_accounts', views.accounts, name='bank_accounts'),
+    path('bank_accounts/<int:account_id>', views.account_details, name='bank_account_details'),
+
+    path('signup', views.signup, name='signup'),
+    # path('login', views.login, name='login')
 ]

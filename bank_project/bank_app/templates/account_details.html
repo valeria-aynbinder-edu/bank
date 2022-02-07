@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title_block %} Account details {% endblock %}
+
+{% block content_block %}
+
+<div>
+    <p>Account details</p>
+
+    <form action="{% url 'bank_account_details' account.id %}" method="post" >
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input class="btn btn-primary" type="submit" value="Save">
+    </form>
+</div>
+
+{% endblock %}

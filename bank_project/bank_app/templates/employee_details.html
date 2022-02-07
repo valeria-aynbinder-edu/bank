@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title_block %} Branches {% endblock %}
+
+{% block content_block %}
+
+<div>
+    <p>Employee details</p>
+    {% if is_edit_mode %}
+        <form action="{% url 'employee_details' employee.id %}" method="post" >
+            {{ form.as_p }}
+            <input class="btn btn-primary" type="submit" value="Save">
+        </form>
+    {% else %}
+        <div class="card" style="width:400px">
+            <img class="card-img-top" src="https://www.w3schools.com/bootstrap5/img_avatar1.png" alt="Card image">
+            <div class="card-body">
+                <h4 class="card-title">{{ employee.first_name }} {{ employee.last_name }}</h4>
+                <p class="card-text">Birth date: {{ employee.birth_date }}</p>
+                <p class="card-text">Address: {{ employee.city }} {{ employee.address }}</p>
+                <a href="?mode=edit" class="btn btn-primary">Edit</a>
+            </div>
+        </div>
+    {% endif %}
+</div>
+
+{% endblock %}
