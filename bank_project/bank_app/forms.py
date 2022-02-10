@@ -37,7 +37,7 @@ class EmployeeForm(forms.ModelForm):
     position_details = forms.ModelMultipleChoiceField(
             queryset=BranchEmployee.objects.filter(is_deleted=False))
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, user_id, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['position_details'].queryset = \
             BranchEmployee.objects.filter(is_deleted=False, employee_id=self.instance.id)
@@ -47,6 +47,7 @@ class EmployeeForm(forms.ModelForm):
                 'id', flat=True
             )
         )
+
 
     # def __init__(self, is_new_form, *args, **kwargs):
     #     super().__init__(*args, **kwargs)

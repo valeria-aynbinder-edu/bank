@@ -19,8 +19,10 @@ from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('login', auth_views.LoginView.as_view()),
-    # path('logout', auth_views.LogoutView.as_view()),
-    path('logout', auth_views.logout_then_login),
+    #option 1
+    path('logout', auth_views.LogoutView.as_view()),
+    # option 2
+    # path('logout', auth_views.logout_then_login),
     # path('accounts/', include('django.contrib.auth.urls')),
     path('', include('bank_app.urls')),
     path('admin/', admin.site.urls),

@@ -21,7 +21,7 @@ def branches(request):
     # branches = Branch.objects.filter(is_deleted=False).select_related("city")
     branches = Branch.objects.filter(is_deleted=False).prefetch_related("city")
     return render(request, "branches.html", context={'branches': branches})
-
+from django.views import View
 @login_required
 def branch_details(request, branch_id):
     # branch = get_object_or_404(Branch, pk=branch_id)
